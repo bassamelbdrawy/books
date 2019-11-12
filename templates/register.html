@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" id='user' name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="password" placeholder="Password" type="password" id ="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Password(again)" type="password" id="confirmation">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+    <script>
+         document.querySelector('form').onsubmit = function()
+       {
+           if (!document.querySelector('#user').value)
+           {
+               alert('username is empty');
+               return false;
+           }
+           else if (!document.querySelector('#password').value)
+           {
+               alert('password is empty');
+               return false;
+           }
+           else if (!document.querySelector('#confirmation').value)
+           {
+               alert('retype your password');
+               return false;
+           }
+       }
+    </script>
+{% endblock %}

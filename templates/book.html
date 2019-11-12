@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    book
+{% endblock %}
+
+{% block main %}   
+    <span class = "bookresult"> THE BOOK ISBN IS : </span> <span class = "a"> {{ rows[0]["isbn"] }} </span> <span class = "at"> {{ ress["books"][0]["work_ratings_count"] }} </span> <span class = "bookresultt"> GOOD READS WORK RATINGS COUNT IS : </span> <br>
+    <span class = "bookresult"> THE TITLE OF THE BOOK IS : </span><span class = "a"> {{ rows[0]["title"] }} </span> <span class = "at"> {{ ress["books"][0]["work_reviews_count"] }} </span> <span class = "bookresultt"> GOOD READS WORK REVIEWS COUNT IS: </span> <br>
+    <span class = "bookresult"> THE AUTHOR OF THE BOOK IS : </span><span class = "a"> {{ rows[0]["author"] }} </span> <span class = "at"> {{ ress["books"][0]["average_rating"] }} </span> <span class = "bookresultt"> GOOD READS AVERAGE RATING IS : </span> <br>
+    <span class = "bookresult"> THE YEAR OF THE BOOK IS : </span><span class = "a"> {{ rows[0]["year"] }} </span>
+<br>
+<br>
+<form action="/book/{{ rows[0]['isbn'] }}" method="post">
+    <div class="form-group">
+        <input autocomplete="off" autofocus class="form-control" name="review" placeholder="you can add any review you want.." type="text" id = "search">
+        <select name = "rate" class="btn btn-primary" id = "rate">
+        <option disabled selected >rate</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        </select>
+        <button class="btn btn-primary" type="submit"  id ="searchbutton">add review</button >
+    </div>
+</form>
+<br>
+<br>
+<h3 class="mb-3" id = "h2">REVIWES</h3>
+    <br>
+    <div>
+    <table class="table table-striped table-bordered" id = "d2">
+    <thead>
+        <tr>
+            <th scope="col" class = "comment">COMMENTS</th>
+            <th scope="col" class = "comment">RATES</th>
+        </tr>
+    </thead>
+        {% for row in data %}
+        <tr>
+          <th>{{ row["review"] }}</th>
+          <th>{{ row["rate"] }}</th>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock %}
